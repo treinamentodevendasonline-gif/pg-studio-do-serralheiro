@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #050a14;
+  color: #e6edf6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer components {
+  /* Chapa de aço escovado */
+  .steel-panel {
+    background:
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px),
+      linear-gradient(150deg, #16294a 0%, #0c1830 60%, #0a1428 100%);
+    border: 1px solid rgba(169, 188, 211, 0.2);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 24px 48px -24px rgba(0, 0, 0, 0.75);
+  }
+
+  /* Grade de desenho técnico */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(169, 188, 211, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(169, 188, 211, 0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Rebite */
+  .rivet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 30% 30%, #e6edf6, #6f8aad 55%, #2a3f63);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  .metal-text {
+    background: linear-gradient(180deg, #ffffff 0%, #c9d8ec 45%, #8fa9cc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    color: #fff;
+    background: linear-gradient(180deg, #3f8dff 0%, #1d5fe0 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 14px 34px -10px rgba(47, 123, 255, 0.75);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-cta:hover {
+    filter: brightness(1.1);
+  }
+  .btn-cta:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Momento principal: o projeto se desenha na tela */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.4s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+.rise {
+  opacity: 0;
+  animation: rise 0.7s ease-out forwards;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-plus {
+  transform: rotate(45deg);
+}
+
+:focus-visible {
+  outline: 3px solid #7cb0ff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .rise {
+    animation: none;
+    opacity: 1;
+  }
+}
